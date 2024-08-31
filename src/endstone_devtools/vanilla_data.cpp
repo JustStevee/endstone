@@ -182,12 +182,12 @@ void dumpBlockData(VanillaData &data, ::Level &level)
                 {"mapColor", map_color.toHexString()},
                 {"collisionShape",
                  {
-                     round(collision_shape.min.x),
-                     round(collision_shape.min.y),
-                     round(collision_shape.min.z),
-                     round(collision_shape.max.x),
-                     round(collision_shape.max.y),
-                     round(collision_shape.max.z),
+                     collision_shape.min.x,
+                     collision_shape.min.y,
+                     collision_shape.min.z,
+                     collision_shape.max.x,
+                     collision_shape.max.y,
+                     collision_shape.max.z,
                  }},
             });
             data.block_palette.add(block.getSerializationId().copy());
