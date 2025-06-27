@@ -55,7 +55,7 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
 
     BlockTypeRegistry::forEachBlock([&](const BlockLegacy &block_legacy) {
         const auto &name = block_legacy.getName().getString();
-        if (name != "minecraft:bamboo") {
+        if (name != "minecraft:bamboo" && name != "minecraft:pointed_dripstone") {
             continue;
         }
         nlohmann::json tags;
