@@ -55,7 +55,9 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
 
     BlockTypeRegistry::forEachBlock([&](const BlockLegacy &block_legacy) {
         const auto &name = block_legacy.getName().getString();
-
+        if (name != "minecraft:bamboo") {
+            continue;
+        }
         nlohmann::json tags;
         for (const auto &tag : block_legacy.getTags()) {
             auto tag_name = tag.getString();
@@ -76,6 +78,9 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
         }
 
         block_legacy.forEachBlockPermutation([&](const ::Block &block) {
+            for (int x = 0; x <= 1000; x++) {
+                for (int z = 0; z <= 1000; z++) {
+      
             std::vector<AABB> collision_shape;
             AABB outline_shape;
             AABB visual_shape;
@@ -90,29 +95,13 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
             data.block_states.push_back({
                 {"name", name},
                 {"blockStateHash", block.getRuntimeId()},
-                {"burnOdds", block.getBurnOdds()},
-                {"flameOdds", block.getFlameOdds()},
-                {"thickness", truncate(block.getThickness())},
-                {"lightDampening", block.getLight()},
-                {"lightEmission", block.getLightEmission()},
-                {"explosionResistance", truncate(block.getExplosionResistance())},
-                {"friction", truncate(block.getFriction())},
-                {"hardness", truncate(block.getDestroySpeed())},
-                {"canContainLiquidSource", block.getDirectData().water_detection_rule.can_contain_liquid},
-                {"liquidReactionOnTouch",
-                 magic_enum::enum_name(block.getDirectData().water_detection_rule.on_liquid_touches)},
-                {"requiresCorrectToolForDrops", block.requiresCorrectToolForDrops()},
-                {"isSolid", block.isSolid()},
-                {"translucency", block.getTranslucency()},
-                {"mapColor", map_color.toHexString()},
-                {"tintMethod", magic_enum::enum_name(block.getLegacyBlock().getTintMethod())},
+                {"worldX", x},
+                {"worldZ", z},
                 {"collisionShape", collision_shape},
-                {"outlineShape", outline_shape},
-                {"visualShape", visual_shape},
-                {"uiShape", ui_shape},
-                {"liquidClipShape", liquid_clip_shape},
             });
             data.block_palette.add(block.getSerializationId().copy());
+                }
+            }
             return true;
         });
         return true;
