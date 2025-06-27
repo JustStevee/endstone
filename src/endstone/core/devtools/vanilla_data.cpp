@@ -100,6 +100,7 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
         });
         return true;
         }
+        return true;
     });
 }
 
