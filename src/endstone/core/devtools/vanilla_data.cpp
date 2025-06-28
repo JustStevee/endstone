@@ -77,8 +77,8 @@ void dumpBlockData(VanillaData &data, const ::Level &level)
         }
 
         block_legacy.forEachBlockPermutation([&](const ::Block &block) {
-            for (int x = 0; x <= 50; x++) {
-                for (int z = 0; z <= 50; z++) {
+            for (int x = -50; x <= 50; x++) {
+                for (int z = -50; z <= 50; z++) {
       
             std::vector<AABB> collision_shape;
             AABB outline_shape;
